@@ -3,22 +3,24 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "LayoutWithBreadcrumb.cshtml";
-}
 
 
-@{
-	var selection = Umbraco?.Content(Guid.Parse("bae1d9ca-a013-4802-ab76-0a9d9434679d"))
+ var itemsPerPage = 6;
+var pageNumber = 1;
+
+    if (!int.TryParse(Context.Request.Query["page"], out pageNumber))
+        pageNumber = 1;
+
+
+	var selection = Umbraco?.Content(Guid.Parse("bae1d9ca-a013-4802-ab76-0a9d9434679d"))?
     .ChildrenOfType("newsItemPage")
     .Where(x => x.IsVisible())
-    .OrderByDescending(x => x.CreateDate);
-}
-
-
+    .OrderByDescending(x => x.CreateDate).ToList();
 
 
     var totalItems = selection?.Count() ?? 0;
     var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
-
+}
 
     <section class="article-section">
         <div class="container">
