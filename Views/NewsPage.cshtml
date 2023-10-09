@@ -1,6 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
 @{
 	Layout = "LayoutWithBreadcrumb.cshtml";
 
@@ -12,7 +13,7 @@ var pageNumber = 1;
         pageNumber = 1;
 
 
-	var selection = Umbraco?.Content(Guid.Parse("bae1d9ca-a013-4802-ab76-0a9d9434679d"))?
+	var selection = Umbraco?.Content(Guid.Parse("15e17a60-a5df-41f2-8cea-96a6d4a0ec5e"))?
     .ChildrenOfType("newsItemPage")
     .Where(x => x.IsVisible())
     .OrderByDescending(x => x.CreateDate).ToList();
@@ -25,7 +26,8 @@ var pageNumber = 1;
     <section class="article-section">
         <div class="container">
             <div class="browse-news">
-            <h2>Our News & Articles</h2>
+                <h2>Our News & Articles</h2>
+             </div>
             <div class="articles">
                     
                 @if(pagedItems != null)
@@ -47,7 +49,6 @@ var pageNumber = 1;
                              
                             <img src="@image?.Url()" alt="">
                             <p class="category">@category</p>
-                            <h4 class="article-title">@title</h4>
                             <h5>@title</h5>
                             <p >@preamble</p>
                            
