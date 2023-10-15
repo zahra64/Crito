@@ -16,13 +16,7 @@ public class MailService : IDisposable
     private string _username;
     private string _password;
     private MailKit.Net.Smtp.SmtpClient _client;
-    //private readonly DatabaseContext _databaseContext;
 
-    //public MailService(DatabaseContext databaseContext)
-    //{
-    //    _databaseContext = databaseContext;
-    //    _client = new MailKit.Net.Smtp.SmtpClient();
-    //}
 
     public MailService(string from, string smtp, int port, string username, string password)
     {

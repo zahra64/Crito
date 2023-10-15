@@ -13,15 +13,14 @@ namespace Crito.Controllers
 {
     public class ContactsController : SurfaceController
     {
+        private readonly ContactFormService _contactFormService;
 
-      
-        
 
-        public ContactsController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+        public ContactsController(ContactFormService contactFormService, IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
-         
-           
+            _contactFormService = contactFormService;
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Index(ContactForm contactForm)
