@@ -1,4 +1,5 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -27,3 +28,29 @@
 
 @await Html.PartialAsync("_AboutCompany")
 @await Html.PartialAsync("_OurServicesSection",Model)
+
+
+
+
+ <section class="chooseus-section ">
+   
+    <div class="container">
+        <div class="content-column">
+            <p>@Model.Value("chooseUsTitle")</p>
+            <h2>@Model.Value("chooseUsHeading")</h2>
+            <ul>
+                 @Html.GetBlockListHtml(Model.ChooseUsList)
+            </ul>
+        </div>
+        <div class="image-column">
+            @{
+                var chooseusImage = Model.Value<MediaWithCrops>("chooseusImage");
+                if (chooseusImage != null)
+                {
+                    <img src="@chooseusImage.MediaUrl()" alt="@Model.Value("chooseUsTitle")">
+                }
+            }
+        </div>
+    </div>
+     <div class="rectangle-gray"></div>
+</section>
